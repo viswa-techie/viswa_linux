@@ -1,0 +1,356 @@
+Below is a **complete beginner → advanced Table of Contents (TOC)** for the **Linux Security Subsystem (kernel perspective)**.
+It covers **security architecture, access control models, kernel security frameworks, isolation mechanisms, and embedded system security**.
+
+---
+
+# Complete Table of Contents — Linux Security Subsystem
+
+# 1. Foundations of Operating System Security
+
+1.1 What is system security
+1.2 Importance of security in operating systems
+1.3 Security goals (confidentiality, integrity, availability)
+1.4 Threat models in computing systems
+1.5 Attack surfaces in operating systems
+1.6 Security terminology and definitions
+
+---
+
+# 2. History and Evolution of Linux Security
+
+2.1 Security in early Unix systems
+2.2 Traditional Unix permission model
+2.3 Evolution of Linux security mechanisms
+2.4 Development of modern kernel security frameworks
+
+---
+
+# 3. Security Architecture in Linux
+
+3.1 Linux security model overview
+3.2 Kernel vs user-space security responsibilities
+3.3 Security enforcement points in kernel
+3.4 Security policy and mechanisms separation
+
+---
+
+# 4. Authentication Mechanisms
+
+4.1 User authentication concepts
+4.2 Password-based authentication
+4.3 Pluggable Authentication Modules (PAM)
+4.4 Multi-factor authentication mechanisms
+
+---
+
+# 5. User and Group Management
+
+5.1 User identifiers (UID)
+5.2 Group identifiers (GID)
+5.3 Privileged vs unprivileged users
+5.4 User account management
+
+---
+
+# 6. File System Security
+
+6.1 File permission model
+6.2 Read, write, execute permissions
+6.3 File ownership
+6.4 Permission inheritance
+6.5 Access control lists (ACLs)
+
+---
+
+# 7. Linux Capabilities
+
+7.1 Limitations of root privilege model
+7.2 Capability-based security
+7.3 Capability sets
+7.4 Kernel capability checks
+
+---
+
+# 8. Linux Security Modules (LSM)
+
+8.1 LSM architecture overview
+8.2 Security hooks in kernel
+8.3 LSM framework design
+8.4 Security policy enforcement
+
+---
+
+# 9. Mandatory Access Control (MAC)
+
+9.1 MAC security model
+9.2 Difference between MAC and DAC
+9.3 Policy-based access control
+
+---
+
+# 10. Discretionary Access Control (DAC)
+
+10.1 Traditional Unix access control
+10.2 Owner-based permissions
+10.3 Limitations of DAC
+
+---
+
+# 11. SELinux (Security-Enhanced Linux)
+
+11.1 SELinux architecture
+11.2 SELinux policy model
+11.3 SELinux security contexts
+11.4 Type enforcement
+11.5 Role-based access control
+
+---
+
+# 12. AppArmor
+
+12.1 AppArmor architecture
+12.2 Profile-based security model
+12.3 Application confinement
+
+---
+
+# 13. Smack Security Module
+
+13.1 Smack architecture
+13.2 Label-based security model
+
+---
+
+# 14. TOMOYO Security Module
+
+14.1 TOMOYO architecture
+14.2 Domain-based security
+
+---
+
+# 15. Seccomp (Secure Computing Mode)
+
+15.1 Seccomp architecture
+15.2 System call filtering
+15.3 Seccomp policies
+
+---
+
+# 16. Namespaces and Security Isolation
+
+16.1 Namespace concept
+16.2 Process isolation
+16.3 Mount namespaces
+16.4 Network namespaces
+16.5 User namespaces
+
+---
+
+# 17. Control Groups (cgroups)
+
+17.1 Resource control mechanisms
+17.2 Security isolation using cgroups
+17.3 Container resource restrictions
+
+---
+
+# 18. Kernel Address Space Protection
+
+18.1 Address space layout randomization (ASLR)
+18.2 Kernel ASLR (KASLR)
+18.3 Stack canaries
+
+---
+
+# 19. Memory Protection Mechanisms
+
+18.1 Non-executable memory (NX bit)
+18.2 Supervisor mode protections
+18.3 Kernel page table isolation (KPTI)
+
+---
+
+# 20. Secure Boot
+
+20.1 Secure boot architecture
+20.2 Firmware verification
+20.3 Kernel signature verification
+
+---
+
+# 21. Cryptographic Services in Linux
+
+21.1 Kernel cryptographic API
+21.2 Encryption algorithms
+21.3 Hashing algorithms
+21.4 Random number generation
+
+---
+
+# 22. Key Management
+
+22.1 Kernel key retention service
+22.2 Keyrings
+22.3 Key management APIs
+
+---
+
+# 23. Network Security in Kernel
+
+23.1 Packet filtering
+23.2 Netfilter architecture
+23.3 Firewall mechanisms
+23.4 Network security modules
+
+---
+
+# 24. Container Security
+
+24.1 Container isolation mechanisms
+24.2 Security boundaries in containers
+24.3 Container runtime security
+
+---
+
+# 25. Kernel Security Hardening
+
+25.1 Kernel hardening techniques
+25.2 Preventing privilege escalation
+25.3 Kernel attack mitigation strategies
+
+---
+
+# 26. Kernel Security Debugging
+
+26.1 Security auditing
+26.2 Audit subsystem
+26.3 Security logging
+
+---
+
+# 27. Kernel Source Code for Security
+
+Important directories:
+
+```text
+security/
+security/selinux/
+security/apparmor/
+security/smack/
+```
+
+Important files:
+
+```text
+security/security.c
+security/commoncap.c
+```
+
+---
+
+# 28. Security Flow Diagrams
+
+28.1 Access control decision flow
+28.2 LSM security hook execution
+28.3 SELinux policy enforcement flow
+28.4 Secure boot verification flow
+
+---
+
+# 29. Important Security Diagrams
+
+29.1 Linux security architecture diagram
+29.2 LSM framework architecture
+29.3 Container isolation architecture
+29.4 Kernel hardening architecture
+
+---
+
+# 30. Definitions of Important Terms
+
+30.1 Authentication
+30.2 Authorization
+30.3 Access control
+30.4 Privilege escalation
+30.5 Security policy
+
+---
+
+# 31. Security Models in Other Operating Systems
+
+31.1 Windows security architecture
+31.2 macOS security model
+31.3 QNX security architecture
+31.4 RTOS security mechanisms
+
+---
+
+# 32. Embedded Linux Security
+
+32.1 Secure boot in embedded systems
+32.2 Device authentication
+32.3 Firmware integrity protection
+
+---
+
+# 33. Documentation and References
+
+33.1 Linux kernel security documentation
+33.2 Security architecture papers
+33.3 Kernel source references
+
+---
+
+# 34. Interview Preparation Topics
+
+34.1 Linux security interview questions
+34.2 Kernel security debugging scenarios
+34.3 Security vulnerability discussions
+
+---
+
+# What Topic Should Come Next (Priority for Embedded Engineers)
+
+Now that we covered **security**, the **remaining kernel areas ranked by priority** for an embedded Linux engineer would be:
+
+### ⭐ Very Important
+
+1️⃣ **Power Management**
+(battery devices, automotive, mobile SoCs)
+
+### ⭐ Very Important
+
+2️⃣ **Kernel Debugging & Tracing**
+(real-world kernel debugging)
+
+### ⭐ Important
+
+3️⃣ **Kernel Build System**
+(Kconfig, Makefiles, cross-compilation)
+
+### ⭐ Important
+
+4️⃣ **Containers & Namespaces**
+
+### ⭐ Optional Advanced
+
+5️⃣ **Virtualization (KVM, Hypervisors)**
+
+---
+
+# Recommended Next Topic
+
+The **next most important topic** for embedded engineers is:
+
+## **Power Management in Linux Kernel**
+
+Because modern systems depend heavily on:
+
+* CPU power states
+* device power management
+* suspend/resume
+* battery optimization
+
+---
+
+If you'd like, I can now create the **complete TOC for Linux Power Management**, which is **very relevant for Android, automotive, and embedded SoCs**.

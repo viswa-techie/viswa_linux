@@ -1,0 +1,335 @@
+Below is a comprehensive Table of Contents (TOC) for learning Linux Memory Management completely — including hardware, kernel software, mechanisms, drivers, history, diagrams, debugging, and comparisons with other OS.
+
+This structure is similar to what you would see in a full university course + kernel developer reference.
+
+Complete Table of Contents — Linux Memory Management
+1. Foundations of Computer Memory
+
+1.1 Definition of memory in computing
+1.2 Memory hierarchy (register → cache → RAM → storage)
+1.3 Volatile vs non-volatile memory
+1.4 Latency, bandwidth, and memory performance
+1.5 Addressing concepts
+1.6 Memory alignment
+1.7 Endianness
+1.8 Historical evolution of memory systems
+
+2. History of Memory Management
+
+2.1 Early computer memory management (no OS)
+2.2 Single program memory model
+2.3 Fixed partition memory systems
+2.4 Dynamic partition memory systems
+2.5 Segmentation model
+2.6 Paging model introduction
+2.7 Virtual memory evolution
+2.8 Memory management in Unix
+2.9 Evolution of memory management in Linux kernel
+2.10 Modern memory management trends
+
+3. Hardware Architecture for Memory Management
+
+3.1 CPU memory subsystem overview
+3.2 Memory Management Unit (MMU)
+3.3 Translation Lookaside Buffer (TLB)
+3.4 Page Table Walker
+3.5 Cache hierarchy (L1, L2, L3)
+3.6 Cache coherence protocols
+3.7 Memory controller
+3.8 DRAM architecture
+3.9 Memory buses and interconnects
+3.10 NUMA architecture
+3.11 Hardware memory protection mechanisms
+3.12 Virtualization hardware support (EPT, NPT, Stage-2 translation)
+3.13 Hardware page fault mechanism
+
+4. Virtual Memory Concepts
+
+4.1 What is virtual memory
+4.2 Virtual vs physical addresses
+4.3 Address translation concept
+4.4 Paging vs segmentation
+4.5 Page sizes and page frames
+4.6 Memory fragmentation
+4.7 Internal vs external fragmentation
+4.8 Memory protection
+4.9 Shared memory concepts
+4.10 Memory isolation between processes
+
+5. Address Translation Mechanism
+
+5.1 Virtual address format
+5.2 Page table structures
+5.3 Multi-level page tables
+5.4 Page directory hierarchy
+5.5 Page table entries (PTE)
+5.6 Address translation flow
+5.7 TLB lookup process
+5.8 Page table walk process
+5.9 TLB shootdown mechanism
+5.10 Address space identifiers
+
+6. Linux Memory Architecture Overview
+
+6.1 Linux memory subsystem overview
+6.2 Kernel vs user memory
+6.3 Linux memory zones
+6.4 Memory nodes (NUMA nodes)
+6.5 Memory sections and blocks
+6.6 Page frame abstraction
+6.7 struct page overview
+6.8 mem_map structure
+
+7. Linux Virtual Memory Management
+
+7.1 Process address space
+7.2 Memory layout of a Linux process
+7.3 Kernel virtual address space layout
+7.4 Memory descriptors
+7.5 struct mm_struct
+7.6 struct vm_area_struct (VMA)
+7.7 Virtual memory regions
+7.8 Memory mappings
+7.9 mmap system call
+7.10 brk system call
+
+8. Page Allocation Mechanisms
+
+8.1 Page frame allocation
+8.2 Buddy allocator algorithm
+8.3 Memory orders and block sizes
+8.4 Page splitting and merging
+8.5 Memory fragmentation handling
+8.6 Allocation flags (GFP flags)
+8.7 alloc_pages() mechanism
+
+9. Kernel Memory Allocators
+
+9.1 kmalloc allocator
+9.2 vmalloc allocator
+9.3 kvmalloc
+9.4 slab allocator
+9.5 slub allocator
+9.6 slob allocator
+9.7 object caching
+9.8 slab cache management
+
+10. Page Cache and File System Caching
+
+10.1 Page cache architecture
+10.2 File read caching
+10.3 Writeback mechanism
+10.4 Dirty pages
+10.5 Page cache vs buffer cache
+10.6 Readahead mechanism
+
+11. Demand Paging
+
+11.1 Concept of lazy allocation
+11.2 Page fault triggers
+11.3 Page loading mechanism
+11.4 Zero page allocation
+11.5 Demand paging advantages
+
+12. Page Fault Handling
+
+12.1 Page fault types
+12.2 Minor page faults
+12.3 Major page faults
+12.4 Page fault handling flow
+12.5 Kernel page fault handler
+12.6 do_page_fault() mechanism
+
+13. Copy-on-Write Mechanism
+
+13.1 fork() system call memory behavior
+13.2 Shared page mechanism
+13.3 Write protection
+13.4 Copy-on-write page fault
+13.5 Performance advantages
+
+14. Memory Reclaim Mechanisms
+
+14.1 Memory pressure detection
+14.2 Page reclaim algorithms
+14.3 LRU lists
+14.4 Active and inactive pages
+14.5 kswapd daemon
+14.6 Direct reclaim
+
+15. Swap Management
+
+15.1 Swap concept
+15.2 Swap partition vs swap file
+15.3 Page swapping mechanism
+15.4 Swap cache
+15.5 Swappiness tuning
+
+16. Huge Pages and Transparent Huge Pages
+
+16.1 Huge page concept
+16.2 Transparent Huge Pages (THP)
+16.3 Huge page allocation
+16.4 Performance benefits
+
+17. NUMA Memory Management
+
+17.1 NUMA architecture overview
+17.2 NUMA memory policies
+17.3 NUMA node allocation
+17.4 NUMA balancing
+
+18. Contiguous Memory Allocation
+
+18.1 CMA concept
+18.2 DMA memory requirements
+18.3 Contiguous memory regions
+18.4 CMA allocator mechanism
+
+19. IOMMU and Device Memory
+
+19.1 IOMMU architecture
+19.2 Device virtual addressing
+19.3 DMA remapping
+19.4 Device memory isolation
+
+20. Memory Management for Drivers
+
+20.1 DMA memory allocation APIs
+20.2 dma_alloc_coherent()
+20.3 dma_map_single()
+20.4 Scatter-gather DMA
+20.5 Cache coherency issues
+
+21. Memory Management in Device Drivers
+
+21.1 Kernel buffers
+21.2 User space mapping to drivers
+21.3 mmap in drivers
+21.4 Shared memory with devices
+
+22. Memory Protection and Security
+
+22.1 Page permissions (R/W/X)
+22.2 NX bit
+22.3 Kernel page table isolation (KPTI)
+22.4 Address space layout randomization (ASLR)
+22.5 Memory corruption protection
+
+23. Memory Control Groups
+
+23.1 Memory cgroups concept
+23.2 Container memory isolation
+23.3 Memory limits and quotas
+
+24. Memory Debugging Tools
+
+24.1 /proc/meminfo
+24.2 /proc/pid/maps
+24.3 /proc/pid/smaps
+24.4 vmstat
+24.5 free command
+24.6 slabtop
+24.7 perf memory tools
+
+25. Kernel Memory Debugging Techniques
+
+25.1 kmemleak
+25.2 page poisoning
+25.3 KASAN
+25.4 memory leak detection
+
+26. Linux Memory Management Source Code
+
+26.1 mm subsystem overview
+26.2 Important kernel files
+
+mm/mmap.c
+mm/page_alloc.c
+mm/memory.c
+mm/vmscan.c
+mm/slab.c
+mm/vmalloc.c
+
+26.3 Kernel data structures
+26.4 Kernel memory APIs
+
+27. Performance Optimization
+
+27.1 Cache locality optimization
+27.2 NUMA optimization
+27.3 Huge pages tuning
+27.4 Memory fragmentation reduction
+
+28. Memory Management Flow Diagrams
+
+28.1 Virtual address translation flow
+28.2 Page fault handling flow
+28.3 Memory allocation flow
+28.4 fork() memory flow
+28.5 DMA memory flow
+
+29. Important Diagrams for Understanding
+
+29.1 Linux process memory layout
+29.2 Multi-level page tables
+29.3 Buddy allocator tree
+29.4 Kernel vs user space layout
+29.5 TLB lookup pipeline
+
+30. Definitions of Important Terms
+
+30.1 Virtual memory
+30.2 Page frame
+30.3 Page table
+30.4 TLB
+30.5 Page fault
+30.6 Demand paging
+30.7 Copy-on-write
+30.8 Swap
+30.9 NUMA
+30.10 DMA memory
+
+31. Memory Management in Other Operating Systems
+
+31.1 Windows memory management
+31.2 macOS memory management
+31.3 FreeBSD memory system
+31.4 Android memory management
+31.5 Embedded RTOS memory models
+31.6 QNX memory architecture
+
+32. Memory Management in Virtualization
+
+32.1 Guest virtual memory
+32.2 Hypervisor memory mapping
+32.3 Shadow page tables
+32.4 Nested page tables
+
+33. Memory Management in Modern Systems
+
+33.1 Persistent memory
+33.2 Memory tiering
+33.3 GPU memory management
+33.4 Heterogeneous memory systems
+
+34. Important Research Papers and References
+
+34.1 Classic virtual memory papers
+34.2 Linux kernel memory documentation
+34.3 Architecture manuals
+
+35. Useful Resources
+
+35.1 Linux kernel documentation
+35.2 Kernel source code references
+35.3 Books on Linux memory management
+35.4 Research blogs and articles
+
+36. Interview Preparation Topics
+
+36.1 Linux memory management interview questions
+36.2 Kernel debugging scenarios
+36.3 Embedded systems memory questions
+36.4 DMA and driver interview topics
+

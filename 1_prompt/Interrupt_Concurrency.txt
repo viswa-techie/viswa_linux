@@ -1,0 +1,371 @@
+Below is a **complete beginner → advanced Table of Contents (TOC)** for **Interrupts and Concurrency in Linux (kernel point of view)**.
+It is structured like a **full course + kernel developer reference**, covering **hardware, kernel mechanisms, synchronization, debugging, and performance aspects**.
+
+This is especially important for **embedded Linux engineers** because **hardware devices interact with the CPU through interrupts and concurrency mechanisms**.
+
+---
+
+# Complete Table of Contents — Linux Interrupts and Concurrency
+
+# 1. Foundations of Interrupts and Concurrency
+
+1.1 What is an interrupt
+1.2 Why interrupts are needed in computer systems
+1.3 Polling vs interrupt-driven systems
+1.4 Definition of concurrency in operating systems
+1.5 Parallelism vs concurrency
+1.6 Importance of interrupts in embedded systems
+1.7 Basic terminology related to interrupts and concurrency
+
+---
+
+# 2. History and Evolution of Interrupt Systems
+
+2.1 Early computer interrupt mechanisms
+2.2 Interrupt handling in early operating systems
+2.3 Evolution of interrupt controllers
+2.4 Interrupt handling evolution in Unix systems
+2.5 Evolution of interrupt architecture in Linux
+
+---
+
+# 3. Hardware Architecture of Interrupt Systems
+
+3.1 CPU interrupt architecture overview
+3.2 Interrupt signals and lines
+3.3 Interrupt vectors
+3.4 Interrupt priority levels
+3.5 Interrupt controllers
+3.6 Programmable Interrupt Controller (PIC)
+3.7 Advanced Programmable Interrupt Controller (APIC)
+3.8 Generic Interrupt Controller (GIC) in ARM
+3.9 Interrupt routing in modern systems
+3.10 Hardware interrupt masking mechanisms
+
+---
+
+# 4. Types of Interrupts
+
+4.1 Hardware interrupts
+4.2 Software interrupts
+4.3 Exceptions
+4.4 Non-maskable interrupts (NMI)
+4.5 Maskable interrupts
+4.6 Inter-processor interrupts (IPI)
+4.7 Timer interrupts
+4.8 Device interrupts
+
+---
+
+# 5. Interrupt Handling Flow
+
+5.1 Interrupt generation by hardware
+5.2 Interrupt signal propagation
+5.3 CPU interrupt detection
+5.4 Interrupt vector lookup
+5.5 Interrupt handler execution
+5.6 Interrupt completion and return
+
+---
+
+# 6. Interrupt Handling in Linux Kernel
+
+6.1 Linux interrupt subsystem overview
+6.2 Interrupt descriptor structures
+6.3 Interrupt vector table in Linux
+6.4 Interrupt registration in drivers
+6.5 request_irq() mechanism
+6.6 Interrupt handler execution
+6.7 Interrupt return flow
+
+---
+
+# 7. Top Half and Bottom Half Mechanisms
+
+7.1 Concept of top half interrupt handler
+7.2 Limitations of top half handlers
+7.3 Bottom half processing concept
+7.4 Deferred interrupt handling
+
+---
+
+# 8. Deferred Work Mechanisms
+
+8.1 SoftIRQs
+8.2 Tasklets
+8.3 Workqueues
+8.4 Kernel threads for deferred work
+8.5 Differences between deferred mechanisms
+
+---
+
+# 9. Interrupt Threading
+
+9.1 Threaded interrupts concept
+9.2 PREEMPT_RT interrupt handling
+9.3 Real-time interrupt processing
+
+---
+
+# 10. Interrupt Affinity and CPU Distribution
+
+10.1 Interrupt affinity concept
+10.2 Distributing interrupts across CPUs
+10.3 Load balancing interrupts
+10.4 Interrupt steering mechanisms
+
+---
+
+# 11. Inter-Processor Interrupts (IPI)
+
+11.1 Multiprocessor systems overview
+11.2 IPI concept
+11.3 IPI usage in Linux kernel
+11.4 TLB shootdown via IPI
+
+---
+
+# 12. Timer Interrupts
+
+12.1 System timers
+12.2 Periodic timer interrupts
+12.3 High resolution timers
+12.4 Tickless kernel
+
+---
+
+# 13. Concurrency in Operating Systems
+
+13.1 Definition of concurrency
+13.2 Processes vs threads
+13.3 Multicore execution
+13.4 Concurrent execution models
+
+---
+
+# 14. Concurrency Problems
+
+14.1 Race conditions
+14.2 Critical sections
+14.3 Deadlocks
+14.4 Livelocks
+14.5 Starvation
+
+---
+
+# 15. Kernel Synchronization Mechanisms
+
+15.1 Synchronization overview
+15.2 Mutual exclusion concept
+15.3 Locking mechanisms in kernel
+15.4 Lock granularity
+
+---
+
+# 16. Spinlocks
+
+16.1 Spinlock concept
+16.2 Spinlock implementation
+16.3 Spinlock usage in interrupt context
+16.4 Raw spinlocks
+16.5 Read-write spinlocks
+
+---
+
+# 17. Mutexes
+
+17.1 Mutex concept
+17.2 Mutex implementation in kernel
+17.3 Sleeping locks
+17.4 Mutex vs spinlock comparison
+
+---
+
+# 18. Semaphores
+
+18.1 Semaphore concept
+18.2 Binary semaphores
+18.3 Counting semaphores
+18.4 Semaphore usage in kernel
+
+---
+
+# 19. Atomic Operations
+
+19.1 Atomic operations concept
+19.2 Atomic variables
+19.3 Atomic APIs in Linux
+19.4 Lock-free programming
+
+---
+
+# 20. Memory Barriers and Ordering
+
+20.1 CPU memory ordering issues
+20.2 Memory barriers concept
+20.3 Read memory barriers
+20.4 Write memory barriers
+20.5 Full memory barriers
+
+---
+
+# 21. Locking in Interrupt Context
+
+21.1 Interrupt context restrictions
+21.2 Locking rules in interrupt handlers
+21.3 Avoiding deadlocks in interrupt context
+
+---
+
+# 22. Per-CPU Data Structures
+
+22.1 Per-CPU variables concept
+22.2 Avoiding contention using per-CPU data
+22.3 Per-CPU memory allocation
+
+---
+
+# 23. RCU (Read-Copy-Update)
+
+23.1 RCU concept
+23.2 RCU read-side critical sections
+23.3 RCU update mechanism
+23.4 Grace periods
+
+---
+
+# 24. Concurrency in Device Drivers
+
+24.1 Concurrent access in drivers
+24.2 Interrupt-driven driver concurrency
+24.3 Locking strategies for drivers
+24.4 Synchronization with hardware
+
+---
+
+# 25. Interrupt Handling in Drivers
+
+25.1 Registering interrupts in drivers
+25.2 Writing interrupt handlers
+25.3 Handling shared interrupts
+25.4 Interrupt disabling and enabling
+
+---
+
+# 26. Interrupt Debugging and Monitoring
+
+26.1 /proc/interrupts
+26.2 Interrupt statistics
+26.3 Debugging interrupt storms
+26.4 Tracing interrupt latency
+
+---
+
+# 27. Kernel Tracing and Profiling
+
+27.1 ftrace for interrupts
+27.2 perf interrupt profiling
+27.3 latency tracing
+
+---
+
+# 28. Kernel Source Code for Interrupts
+
+Important kernel directories:
+
+```text
+kernel/irq/
+kernel/softirq.c
+kernel/irq/manage.c
+kernel/irq/chip.c
+```
+
+Key data structures:
+
+* `irq_desc`
+* `irqaction`
+* `irq_chip`
+
+---
+
+# 29. Performance Optimization for Interrupt Systems
+
+29.1 Reducing interrupt latency
+29.2 Interrupt coalescing
+29.3 Load balancing interrupts
+29.4 Optimizing bottom halves
+
+---
+
+# 30. Important Diagrams for Understanding
+
+30.1 Hardware interrupt flow
+30.2 CPU interrupt pipeline
+30.3 Linux interrupt handling flow
+30.4 Top half vs bottom half architecture
+30.5 Deferred work execution flow
+
+---
+
+# 31. Definitions of Important Terms
+
+31.1 Interrupt
+31.2 Interrupt handler
+31.3 IRQ
+31.4 SoftIRQ
+31.5 Tasklet
+31.6 Workqueue
+31.7 Race condition
+31.8 Deadlock
+31.9 Spinlock
+31.10 Mutex
+
+---
+
+# 32. Interrupt Systems in Other Operating Systems
+
+32.1 Windows interrupt model
+32.2 macOS interrupt handling
+32.3 QNX real-time interrupt architecture
+32.4 RTOS interrupt handling models
+
+---
+
+# 33. Real-Time Linux Considerations
+
+33.1 PREEMPT_RT kernel
+33.2 Deterministic interrupt handling
+33.3 Real-time scheduling interaction
+
+---
+
+# 34. Embedded System Interrupt Design
+
+34.1 Interrupt handling in SoC systems
+34.2 Peripheral interrupt handling
+34.3 Low-latency interrupt design
+
+---
+
+# 35. Important Documentation and References
+
+35.1 Linux kernel interrupt documentation
+35.2 Architecture manuals (ARM/x86)
+35.3 Kernel development guides
+
+---
+
+# 36. Interview Preparation Topics
+
+36.1 Interrupt interview questions
+36.2 Concurrency interview questions
+36.3 Debugging scenarios in embedded systems
+36.4 Real-time interrupt questions
+
+---
+
+💡 If you'd like, I can also show something extremely useful next:
+
+**“How interrupts actually flow from hardware → CPU → Linux kernel → device driver → user space”**
+
+That single flow diagram explains **80% of interrupts in Linux** and makes the whole subsystem much easier to understand.

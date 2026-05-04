@@ -1,0 +1,381 @@
+Below is a **complete beginner → advanced Table of Contents (TOC)** for **Process Management & Scheduling in the Linux Kernel**.
+It is structured similar to a **full course + kernel developer reference**, covering **history, hardware interaction, kernel mechanisms, scheduling algorithms, synchronization, debugging, and performance**.
+
+This subsystem is important because **every program running in Linux is a process or thread**, and the **scheduler decides which task runs on the CPU**.
+
+---
+
+# Complete Table of Contents — Linux Process Management & Scheduling
+
+# 1. Foundations of Processes
+
+1.1 What is a process
+1.2 Difference between program and process
+1.3 Process abstraction in operating systems
+1.4 Process lifecycle overview
+1.5 Processes vs threads
+1.6 Concurrency in process execution
+1.7 Multitasking concepts
+1.8 Importance of scheduling in operating systems
+
+---
+
+# 2. History and Evolution of Process Management
+
+2.1 Early batch processing systems
+2.2 Introduction of multiprogramming
+2.3 Time-sharing systems
+2.4 Process management in Unix
+2.5 Evolution of process management in Linux
+2.6 Evolution of Linux scheduling algorithms
+
+---
+
+# 3. Hardware Support for Process Management
+
+3.1 CPU context switching
+3.2 Processor modes (user mode vs kernel mode)
+3.3 CPU registers involved in context switching
+3.4 Hardware timers and scheduling
+3.5 Interrupt-driven scheduling
+3.6 CPU core architecture and multitasking
+3.7 Hardware support for threads
+
+---
+
+# 4. Process Representation in Linux
+
+4.1 Process abstraction in Linux
+4.2 struct task_struct overview
+4.3 Kernel task descriptors
+4.4 Process identifiers (PID)
+4.5 Process namespaces
+4.6 Process hierarchy and parent-child relationships
+
+---
+
+# 5. Process States
+
+5.1 Running state
+5.2 Runnable state
+5.3 Sleeping state
+5.4 Interruptible sleep
+5.5 Uninterruptible sleep
+5.6 Zombie state
+5.7 Stopped state
+
+---
+
+# 6. Process Lifecycle
+
+6.1 Process creation
+6.2 Process execution
+6.3 Process termination
+6.4 Process cleanup
+
+---
+
+# 7. Process Creation Mechanisms
+
+7.1 fork() system call
+7.2 vfork() system call
+7.3 clone() system call
+7.4 exec() family of system calls
+7.5 Process duplication mechanisms
+7.6 Copy-on-write during fork
+
+---
+
+# 8. Threads in Linux
+
+8.1 Thread concept
+8.2 User threads vs kernel threads
+8.3 Linux threading model
+8.4 POSIX threads implementation
+8.5 Kernel threads
+
+---
+
+# 9. Kernel Threads
+
+9.1 Kernel thread architecture
+9.2 Kernel worker threads
+9.3 kthread API
+9.4 Kernel thread lifecycle
+
+---
+
+# 10. Context Switching
+
+10.1 Context switch concept
+10.2 Process context
+10.3 Kernel context
+10.4 Saving and restoring CPU state
+10.5 Context switch overhead
+
+---
+
+# 11. Scheduler Architecture in Linux
+
+11.1 Linux scheduler overview
+11.2 Scheduling classes
+11.3 Scheduler core architecture
+11.4 Scheduling domains
+
+---
+
+# 12. Scheduling Algorithms
+
+12.1 First Come First Serve (FCFS)
+12.2 Round Robin scheduling
+12.3 Priority scheduling
+12.4 Multilevel queue scheduling
+12.5 Multilevel feedback queue scheduling
+
+---
+
+# 13. Completely Fair Scheduler (CFS)
+
+13.1 CFS design goals
+13.2 Virtual runtime concept
+13.3 Red-black tree scheduling structure
+13.4 Fair scheduling principles
+
+---
+
+# 14. Real-Time Scheduling
+
+14.1 Real-time systems overview
+14.2 Real-time scheduling policies
+14.3 SCHED_FIFO
+14.4 SCHED_RR
+14.5 Deadline scheduling
+
+---
+
+# 15. Scheduler Data Structures
+
+15.1 Run queues
+15.2 Task lists
+15.3 Scheduling entities
+15.4 Scheduling groups
+
+---
+
+# 16. CPU Scheduling
+
+16.1 CPU allocation strategies
+16.2 Load balancing across CPUs
+16.3 Scheduling on multicore systems
+16.4 CPU affinity
+
+---
+
+# 17. Process Priority and Nice Values
+
+17.1 Process priority concept
+17.2 Nice value mechanism
+17.3 Priority inheritance
+
+---
+
+# 18. Preemption
+
+18.1 Kernel preemption
+18.2 Preemption models in Linux
+18.3 Voluntary preemption
+18.4 Full kernel preemption
+
+---
+
+# 19. Process Synchronization
+
+19.1 Need for synchronization
+19.2 Critical sections
+19.3 Synchronization primitives
+19.4 Locks in process scheduling
+
+---
+
+# 20. Interprocess Communication (IPC)
+
+20.1 IPC mechanisms overview
+20.2 Pipes
+20.3 Message queues
+20.4 Shared memory
+20.5 Signals
+20.6 Sockets
+
+---
+
+# 21. Signals and Process Control
+
+21.1 Signal concept
+21.2 Signal delivery mechanisms
+21.3 Signal handling
+21.4 Signal masks
+21.5 Signal queues
+
+---
+
+# 22. Process Groups and Sessions
+
+22.1 Process groups
+22.2 Session management
+22.3 Job control in Unix systems
+
+---
+
+# 23. Scheduling Policies
+
+23.1 Normal scheduling policy
+23.2 Batch scheduling
+23.3 Idle scheduling
+23.4 Real-time scheduling policies
+
+---
+
+# 24. Process Accounting
+
+24.1 Resource usage tracking
+24.2 CPU usage statistics
+24.3 Process accounting mechanisms
+
+---
+
+# 25. Scheduler Performance Optimization
+
+25.1 Reducing context switching overhead
+25.2 CPU cache locality
+25.3 Load balancing strategies
+
+---
+
+# 26. Kernel Source Code for Scheduling
+
+Important kernel directories:
+
+```text
+kernel/sched/
+kernel/fork.c
+kernel/exit.c
+kernel/signal.c
+```
+
+Important files:
+
+```text
+kernel/sched/core.c
+kernel/sched/fair.c
+kernel/sched/rt.c
+```
+
+---
+
+# 27. Process Debugging Tools
+
+27.1 ps command
+27.2 top command
+27.3 htop utility
+27.4 pidstat tool
+27.5 perf scheduler analysis
+
+---
+
+# 28. Kernel Tracing for Scheduling
+
+28.1 ftrace scheduling events
+28.2 scheduler tracepoints
+28.3 latency analysis
+
+---
+
+# 29. Important Flow Diagrams
+
+29.1 Process lifecycle flow
+29.2 Process creation flow
+29.3 Context switching flow
+29.4 Scheduler decision flow
+29.5 CPU scheduling pipeline
+
+---
+
+# 30. Important Diagrams for Understanding
+
+30.1 Linux process hierarchy
+30.2 Scheduler architecture diagram
+30.3 Run queue structure
+30.4 Context switching process
+30.5 CPU scheduling model
+
+---
+
+# 31. Definitions of Important Terms
+
+31.1 Process
+31.2 Thread
+31.3 Scheduler
+31.4 Context switch
+31.5 Run queue
+31.6 Preemption
+31.7 Real-time scheduling
+
+---
+
+# 32. Process Management in Other Operating Systems
+
+32.1 Windows process scheduler
+32.2 macOS scheduling model
+32.3 QNX real-time scheduling
+32.4 RTOS process models
+
+---
+
+# 33. Embedded System Process Scheduling
+
+33.1 Scheduling in embedded Linux
+33.2 Real-time constraints
+33.3 Deterministic scheduling
+
+---
+
+# 34. Documentation and References
+
+34.1 Linux kernel scheduling documentation
+34.2 Scheduler design papers
+34.3 Kernel source code references
+
+---
+
+# 35. Interview Preparation Topics
+
+35.1 Linux scheduler interview questions
+35.2 Process management interview questions
+35.3 Embedded scheduling scenarios
+35.4 Debugging scheduler issues
+
+---
+
+If you'd like, I can also create a **very powerful visual learning map**:
+
+**“Complete Linux Kernel Subsystem Roadmap”**
+
+```text
+Hardware
+  ↓
+Interrupts
+  ↓
+Device Drivers
+  ↓
+I/O Subsystem
+  ↓
+Memory Management
+  ↓
+Process & Scheduling
+  ↓
+File Systems
+  ↓
+User Applications
+```
+
+Understanding this **interaction between subsystems** helps embedded engineers **debug real kernel problems much faster**.

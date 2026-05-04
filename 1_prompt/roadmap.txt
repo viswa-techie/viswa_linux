@@ -1,0 +1,379 @@
+Linux Kernel Master Roadmap — Practical Learning Order
+======================================================
+
+This roadmap moves from hardware -> kernel core -> drivers -> advanced systems
+so each topic builds on the previous one.
+
+Total: 34 topics across 9 phases + 1 bonus (RTOS)
+Books: 13 planned | 13 COMPLETE | 0 remaining
+Chapters written: 421
+
+==============================================================================
+                          COMPLETION DASHBOARD
+==============================================================================
+
+  Book                           Chapters  Roadmap Items    Status
+  -----------------------------------------------------------------------
+  Kernel_Architecture_Boot_Book     38     #1-5  (Phase 1)  DONE
+  Process_Scheduling_Book           35     #6-7  (Phase 2)  DONE
+  Interrupt_Concurrency_Book        36     #8-10 (Phase 2)  DONE
+  Memory_Management_Book            36     #11-14(Phase 3)  DONE
+  Device_Drivers_Book               36     #15-20(Phase 4)  DONE
+  Device_Framework_Book             25     (V4L2/ALSA/etc)  DONE
+  File_Systems_Book                 27     #21-24(Phase 5)  DONE
+  Networking_Book                   30     #25-28(Phase 6)  DONE
+  Power_Management_Book             28     #29   (Phase 7)  DONE
+  Security_Book                     34     #30   (Phase 7)  DONE
+  RTOS_Book                         34     (Bonus)          DONE
+  Containers_Virtualization_Book    32     #31-32(Phase 8)  DONE
+  Build_Debug_Book                  30     #33-34(Phase 9)  DONE
+  -----------------------------------------------------------------------
+  Total completed                  421     34 of 34 items
+
+==============================================================================
+
+# Phase 1 — Foundations (How the system actually starts)                [DONE]
+
+Goal: Understand how hardware boots and how Linux starts running
+Book: Kernel_Architecture_Boot_Book/ (38 chapters)
+
+1. Computer Architecture Basics                                         [DONE]
+   - CPU architecture
+   - Memory hierarchy
+   - Interrupts
+   - Bus systems
+   - DMA basics
+
+2. Operating System Fundamentals                                        [DONE]
+   - Kernel vs user space
+   - System calls
+   - Process abstraction
+   - Kernel services
+
+3. Linux Kernel Architecture Overview                                   [DONE]
+   - Kernel subsystems
+   - Kernel execution model
+   - Monolithic kernel design
+
+4. Linux Boot Process                                                   [DONE]
+   - Boot ROM
+   - Firmware (BIOS / UEFI / SoC firmware)
+   - Bootloader (GRUB / U-Boot)
+   - Kernel initialization
+
+5. Kernel Initialization                                                [DONE]
+   - start_kernel()
+   - subsystem initialization
+   - init process
+
+==============================================================================
+
+# Phase 2 — Core Kernel Internals                                      [DONE]
+
+Goal: Understand the core runtime engine of Linux
+Books: Process_Scheduling_Book/ (35 ch) + Interrupt_Concurrency_Book/ (36 ch)
+
+6. Process Management                                                   [DONE]
+   - processes vs threads
+   - task_struct
+   - process lifecycle
+
+7. CPU Scheduling                                                       [DONE]
+   - run queues
+   - scheduler classes (CFS, RT, DEADLINE)
+   - CFS scheduler internals
+   - real-time scheduling (SCHED_FIFO, SCHED_RR)
+
+8. Interrupt Subsystem                                                  [DONE]
+   - interrupt flow (hardirq, softirq, tasklet, workqueue)
+   - interrupt controllers (GIC, NVIC)
+   - IRQ handling and descriptor management
+
+9. Concurrency in Kernel                                                [DONE]
+   - parallel execution models
+   - kernel preemption (PREEMPT_NONE/VOLUNTARY/FULL/RT)
+   - interrupt context vs process context
+
+10. Synchronization & Locking                                           [DONE]
+    - spinlocks (raw_spinlock, spin_lock_irqsave)
+    - mutexes (struct mutex, priority inheritance)
+    - semaphores
+    - RCU (read-copy-update)
+    - lockdep runtime validation
+
+==============================================================================
+
+# Phase 3 — Memory System                                              [DONE]
+
+Goal: Understand how Linux manages RAM
+Book: Memory_Management_Book/ (36 chapters)
+
+11. Virtual Memory Fundamentals                                         [DONE]
+    - virtual vs physical memory
+    - paging and page tables (PGD/PUD/PMD/PTE)
+    - address translation (TLB, page walk)
+
+12. Linux Memory Management                                            [DONE]
+    - multi-level page tables
+    - memory zones (ZONE_DMA, ZONE_NORMAL, ZONE_HIGHMEM)
+    - struct page and page descriptors
+
+13. Kernel Memory Allocation                                            [DONE]
+    - buddy allocator (order-based, page splitting/coalescing)
+    - slab / slub allocator (object caching)
+    - kmalloc / vmalloc / kzalloc
+
+14. Advanced Memory Topics                                              [DONE]
+    - page faults (minor, major, COW)
+    - demand paging
+    - copy-on-write (fork optimization)
+    - swap subsystem
+    - OOM killer
+    - memory compaction and migration
+
+==============================================================================
+
+# Phase 4 — Hardware Interaction                                       [DONE]
+
+Goal: Understand how Linux talks to hardware
+Books: Device_Drivers_Book/ (36 ch) + Device_Framework_Book/ (25 ch)
+
+15. Device Driver Architecture                                          [DONE]
+    - Linux device model (bus/device/driver)
+    - driver lifecycle (probe, remove, suspend, resume)
+    - kernel modules (insmod, modprobe, module_init)
+
+16. Character Device Drivers                                            [DONE]
+    - file_operations (open, read, write, ioctl)
+    - cdev and device numbers (major/minor)
+    - user-kernel data transfer (copy_to_user, copy_from_user)
+
+17. Platform Drivers                                                    [DONE]
+    - platform_device and platform_driver
+    - Device Tree bindings and matching
+    - resource management (devm_* API)
+
+18. Bus Subsystems                                                      [DONE]
+    - PCI (BAR, config space, MSI)
+    - I2C (adapter, client, SMBus)
+    - SPI (master, slave, transfers)
+    - USB (URB, gadget, host controller)
+
+19. Interrupt Handling in Drivers                                       [DONE]
+    - request_irq / devm_request_irq
+    - threaded IRQ handlers
+    - shared interrupts
+    - interrupt affinity
+
+20. DMA and Memory for Devices                                         [DONE]
+    - DMA mapping (streaming, coherent)
+    - IOMMU and SMMU
+    - scatter-gather lists
+    - dma_alloc_coherent / dma_map_single
+
+==============================================================================
+
+# Phase 5 — Kernel Data Movement                                      [DONE]
+
+Goal: Understand how data flows inside Linux
+Book: File_Systems_Book/ (27 chapters)
+
+21. I/O Subsystem                                                       [DONE]
+    - I/O models (blocking, non-blocking, async)
+    - block vs character devices
+    - I/O schedulers
+
+22. Block Layer                                                         [DONE]
+    - bio structure and request queues
+    - I/O scheduling (mq-deadline, BFQ, kyber)
+    - multi-queue block layer (blk-mq)
+
+23. File Systems                                                        [DONE]
+    - VFS (superblock, inode, dentry, file)
+    - ext4, btrfs, f2fs internals
+    - journaling (JBD2)
+    - pseudo filesystems (procfs, sysfs, debugfs)
+
+24. Page Cache and Storage                                              [DONE]
+    - page cache (address_space, readahead)
+    - writeback (dirty pages, pdflush/kworker)
+    - direct I/O vs buffered I/O
+
+==============================================================================
+
+# Phase 6 — Networking & Communication                                 [DONE]
+
+Goal: Understand how Linux handles network traffic
+Book: Networking_Book/ (30 chapters)
+
+25. Linux Networking Architecture                                       [DONE]
+    - networking stack (L2-L7)
+    - sk_buff structure and packet flow
+    - NAPI (polling + interrupt coalescing)
+
+26. Socket Layer                                                        [DONE]
+    - socket API (socket, bind, listen, accept, connect)
+    - struct sock and protocol operations
+    - TCP/UDP implementation internals
+
+27. Network Drivers                                                     [DONE]
+    - net_device structure
+    - NAPI and interrupt handling
+    - DMA ring buffers for TX/RX
+    - ethtool interface
+
+28. Advanced Networking                                                  [DONE]
+    - Netfilter (iptables, nftables, hooks)
+    - eBPF/XDP (programmable data plane)
+    - traffic control (tc, qdisc)
+    - network namespaces and veth pairs
+    - high-performance networking (DPDK, AF_XDP)
+
+==============================================================================
+
+# Phase 7 — System Control & Optimization                              [DONE]
+
+Goal: Understand performance and system behavior
+Books: Power_Management_Book/ (28 ch) + Security_Book/ (34 ch)
+
+29. Power Management                                                    [DONE]
+    - CPU power states (C-states, P-states)
+    - cpufreq and cpuidle governors
+    - runtime PM (pm_runtime_get/put)
+    - system suspend/resume (S3/S4/S5)
+    - device PM callbacks
+    - wakeup sources and wake locks
+    - thermal management
+
+30. Kernel Security                                                     [DONE]
+    - capabilities (CAP_SYS_ADMIN, CAP_NET_RAW, etc.)
+    - SELinux (MAC, security contexts, policy)
+    - AppArmor (path-based MAC)
+    - LSM framework (security hooks)
+    - seccomp (system call filtering)
+    - kernel address space layout randomization (KASLR)
+    - stack protector and control flow integrity
+
+==============================================================================
+
+# Phase 8 — Modern Linux Infrastructure                                [DONE]
+
+Goal: Understand modern production Linux systems
+Book: Containers_Virtualization_Book/ (32 chapters)
+
+31. Containers & Namespaces
+    - namespaces (PID, net, mount, user, UTS, IPC, cgroup, time)
+    - cgroups v1 and v2 (cpu, memory, io, pids controllers)
+    - container runtimes (runc, containerd, CRI-O)
+    - OCI specification (image, runtime, distribution)
+    - seccomp and capabilities for containers
+    - overlay filesystems (overlayfs, union mounts)
+    - container networking (veth, bridge, macvlan, CNI)
+    - Kubernetes pod model and CRI
+    - rootless containers and user namespaces
+
+32. Virtualization
+    - hardware virtualization (VT-x/AMD-V, VT-d, EPT/NPT)
+    - KVM architecture (kvm.ko, kvm-intel.ko, /dev/kvm)
+    - QEMU and userspace device emulation
+    - virtio framework (virtio-net, virtio-blk, virtqueue)
+    - vhost and vhost-user (kernel/userspace acceleration)
+    - hypervisor types (Type 1 vs Type 2)
+    - device passthrough (VFIO, SR-IOV, IOMMU groups)
+    - paravirtualization vs full virtualization
+    - memory ballooning and KSM
+    - live migration
+
+==============================================================================
+
+# Phase 9 — Kernel Development Tools                                   [DONE]
+
+Goal: Learn real developer workflow
+Book: Build_Debug_Book/ (30 chapters)
+
+33. Kernel Build System
+    - Kconfig system (menuconfig, defconfig, savedefconfig)
+    - Kconfig syntax (config, menuconfig, choice, depends on)
+    - Kbuild Makefiles (obj-y, obj-m, ccflags-y, subdir-y)
+    - cross compilation toolchains (arm-linux-gnueabihf-gcc)
+    - out-of-tree module building (KDIR, M=)
+    - Device Tree compilation (dtc, DT overlays, DT bindings)
+    - initramfs and initrd generation
+    - kernel configuration management and fragments
+    - DKMS (Dynamic Kernel Module Support)
+    - reproducible builds
+
+34. Kernel Debugging & Tracing
+    - printk levels and dynamic debug (dyndbg)
+    - ftrace (function tracer, function_graph, events)
+    - trace-cmd and kernelshark visualization
+    - perf (sampling, hardware counters, flame graphs)
+    - eBPF and bpftrace (programmable tracing)
+    - kprobes, kretprobes, uprobes
+    - KGDB and remote kernel debugging
+    - KASAN (address sanitizer) and UBSAN
+    - lockdep (lock dependency validator)
+    - crash dump analysis (kdump, crash utility, vmcore)
+    - Perfetto trace analysis
+    - strace / ltrace for userspace tracing
+    - /proc and /sys debugging interfaces
+
+==============================================================================
+
+# Bonus — Real-Time Operating Systems                                   [DONE]
+
+Book: RTOS_Book/ (34 chapters)
+Covers: FreeRTOS, QNX, VxWorks, Zephyr
+Topics: scheduling, IPC, memory, drivers, safety, security,
+        porting, domain applications, and interview preparation
+
+==============================================================================
+
+# Visual Kernel Architecture Map
+
+Hardware
+   |
+   +-- Boot & Kernel Init          -- Kernel_Architecture_Boot_Book  (38 ch) DONE
+   |
+   +-- Process & Scheduler         -- Process_Scheduling_Book        (35 ch) DONE
+   |
+   +-- Interrupts & Concurrency    -- Interrupt_Concurrency_Book     (36 ch) DONE
+   |
+   +-- Memory Management           -- Memory_Management_Book         (36 ch) DONE
+   |
+   +-- Device Drivers              -- Device_Drivers_Book            (36 ch) DONE
+   |
+   +-- Device Frameworks           -- Device_Framework_Book          (25 ch) DONE
+   |
+   +-- File Systems & I/O          -- File_Systems_Book              (27 ch) DONE
+   |
+   +-- Networking                  -- Networking_Book                (30 ch) DONE
+   |
+   +-- Power Management            -- Power_Management_Book          (28 ch) DONE
+   |
+   +-- Security                    -- Security_Book                  (34 ch) DONE
+   |
+   +-- Containers & Virtualization -- Containers_Virtualization_Book  (32) DONE
+   |
+   +-- Build System & Debugging    -- Build_Debug_Book                (30) DONE
+   |
+   +-- RTOS (Bonus)                -- RTOS_Book                     (34 ch) DONE
+
+==============================================================================
+
+# For You Specifically (Embedded / SoC / Android)
+
+Your most valuable topics from this roadmap:
+
+1. Memory Management           -- DONE (36 chapters)
+2. Device Drivers              -- DONE (36 chapters)
+3. Interrupts & Concurrency    -- DONE (36 chapters)
+4. Synchronization & Locking   -- DONE (in Interrupt_Concurrency_Book)
+5. DMA / IOMMU                 -- DONE (in Device_Drivers_Book)
+6. Power Management            -- DONE (28 chapters)
+7. Kernel Debugging            -- DONE (30 chapters)
+8. RTOS                        -- DONE (34 chapters)
+
+These directly impact SoC platforms like Qualcomm, MediaTek, Nvidia, etc.
+
+==============================================================================
